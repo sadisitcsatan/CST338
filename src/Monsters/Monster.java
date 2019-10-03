@@ -1,7 +1,9 @@
+package Monsters;
+
 import java.util.HashMap;
 import java.util.Objects;
 
-abstract class Monster {
+public abstract class Monster {
     Integer hp;
     private Integer xp;
     private Integer maxHP;
@@ -56,7 +58,7 @@ abstract class Monster {
 
     @Override
     public String toString() {
-        return "Monster{" +
+        return "Monsters.Monster{" +
                 "hp=" + hp +
                 ", xp=" + xp +
                 ", maxHP=" + maxHP +
