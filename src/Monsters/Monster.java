@@ -2,11 +2,19 @@ package Monsters;
 
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Random;
+
+import Abilities.*;
+import Monsters.*;
 
 public abstract class Monster {
-    Integer hp;
+    private Integer hp;
     private Integer xp;
     private Integer maxHP;
+    Integer agi = 0;
+    Integer def = 0;
+    Integer str = 0;
+    Attack attack;
     HashMap<String,Integer> items;
 
     public Monster(int xp, int maxHP, HashMap<String, Integer> items) {
@@ -39,6 +47,30 @@ public abstract class Monster {
     public void setItems(HashMap<String, Integer> items) {
         this.items = items;
     }
+    public Integer attackTarget(Monster target){
+       return this.attack.attack(target);
+    }
+
+    public Integer getAgi() {
+        return agi;
+    }
+
+    public Integer getDef() {
+        return def;
+    }
+
+    public Integer getStr() {
+        return str;
+    }
+    Integer getAttribute(Integer min, Integer max){
+        Random rand = new Random();
+        if(min > max){
+            Integer temp = min;
+            min = max;
+            max = temp;
+        }
+        return rand.nextInt(max-min) + min;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,15 +85,19 @@ public abstract class Monster {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getHp(), getXp(), getMaxHP(), getItems());
+        return super.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Monsters.Monster{" +
+        return "Monster{" +
                 "hp=" + hp +
                 ", xp=" + xp +
                 ", maxHP=" + maxHP +
+                ", agi=" + agi +
+                ", def=" + def +
+                ", str=" + str +
+                ", attack=" + attack +
                 ", items=" + items +
                 '}';
     }
